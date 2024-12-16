@@ -132,6 +132,12 @@ jobs:
 
 ----------
 
+### <br>    ❖ DEPLOY_TALKDROVE ❖
+
+<a href='https://host.talkdrove.com/dashboard/select-bot/prepare-deployment?botId=51' target="_blank"><img alt='DEPLOY' src='https://img.shields.io/badge/TALKDROVE-h?color=navy&style=for-the-badge&logo=visualstudiocode'/></a></p>
+
+----------
+
 ### <br>    ❖ DEPLOY_REPLIT ❖
 
 `✠ IF U HAVE YOUR REPLIT ACCOUNT SO YOU CAN EASY DEPLOY KERM MD V4 ON REPLIT CLICK BLACK BUTTON [DEPLOY TO REPLIT] AND FIND CONFIG.JSON FILE THEN PASTE YOUR SESSION AND MONGODB KEY THEN RUN CODE AND ENJOY BOT ✠`
