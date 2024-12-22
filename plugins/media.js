@@ -156,7 +156,7 @@ cmd({
         const url = args.join(" ");
 
         // Send a request to TinyURL's API to shorten the URL
-        const response = await axios.get(`https://api.tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
+        const response = await axios.get(`https://api.tinyurl.com/api-create.php?url=${url}`);
 
         // Check if the response is valid and contains a shortened URL
         if (response.data) {

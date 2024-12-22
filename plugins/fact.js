@@ -139,10 +139,10 @@ cmd({
         }
 
         // Notify the user that the lyrics are being fetched
-        reply(`🎵 Searching for lyrics of "${title}" by ${artist}...`);
+        reply(`🎵 Searching for lyrics of "${title}" BY ${artist}...`);
 
         // Fetch lyrics using an API
-        const response = await axios.get(`https://api.lyrics.ovh/v1/${artist}/${title}`);
+        const response = await axios.get(`https://lyrics.ovh/v1/${artist}/${title}`);
         const lyrics = response.data.lyrics;
 
         if (!lyrics) {
@@ -150,7 +150,7 @@ cmd({
         }
 
         // Send the lyrics back to the chat
-        reply(`*KERM RESULT*\n\n🎶 *${title}* by *${artist}*\n\n${lyrics}`);
+        reply(`*KERM RESULT*\n\n🎶 *${title}* BY *${artist}*\n\n${lyrics}`);
     } catch (error) {
         console.error("Error fetching lyrics:", error.message);
 
