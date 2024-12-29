@@ -118,3 +118,39 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, 
         reply('❌ An error occurred while processing your request.');
     }
 });
+cmd({
+    pattern: "naruto", // Nom de la commande
+    desc: "Ask Naruto something and get an AI response", // Description de la commande
+    category: "fun", // Catégorie de la commande
+    use: '.naruto <question>', // Exemple d'utilisation : .naruto hi
+    react: "🍜", // Réaction ajoutée
+    filename: __filename
+},
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, reply }) => {
+    try {
+        // Récupérer la question envoyée par l'utilisateur
+        const question = args.join(" ") || 'hi'; // Si aucune question n'est fournie, on utilise "hi" par défaut
+
+        // URL de l'API avec la question et l'ID utilisateur
+        const apiUrl = `https://kaiz-apis.gleeze.com/api/naruto-ai?question=${encodeURIComponent(question)}&uid=4`;
+
+        // Faire la requête à l'API pour obtenir la réponse de Naruto
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // Vérification de la réponse de l'API
+        if (data && data.answer) {
+            const narutoAnswer = data.answer; // La réponse de Naruto
+
+            // Envoyer la réponse de Naruto
+            await conn.sendMessage(from, {
+                text: `Naruto says: ${narutoAnswer}`
+            }, { quoted: mek });
+        } else {
+            reply('❌ Unable to get a response from Naruto. Please try again later.');
+        }
+    } catch (e) {
+        console.error(e);
+        reply('❌ An error occurred while processing your request.');
+    }
+});
