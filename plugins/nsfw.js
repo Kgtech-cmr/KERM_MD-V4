@@ -25,6 +25,9 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, 
 8️⃣ *ANAL*
 9️⃣ *SUSPENSION*
 1️⃣0️⃣ *KISS*
+1️⃣1️⃣ *FUCK*
+1️⃣2️⃣ *WAIFU*
+1️⃣3️⃣ *NEKO*
 
 *_Simply type the number corresponding to the option you'd like to choose._*`;
 
@@ -374,5 +377,39 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, 
     } catch (e) {
         console.error(e);
         await reply('❌ An error occurred while processing your request.');
+    }
+});
+cmd({
+    pattern: "fuck", // Nom de la commande
+    desc: "Send a random NSFW waifu image", // Description de la commande
+    category: "fun", // Catégorie de la commande
+    use: '.fuck', // Exemple d'utilisation : .fuck
+    react: "🍑", // Réaction ajoutée
+    filename: __filename
+},
+async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, reply }) => {
+    try {
+        // URL de l'API pour obtenir une image NSFW de waifu
+        const apiUrl = 'https://kaiz-apis.gleeze.com/api/waifu-nsfw';
+
+        // Faire la requête à l'API pour récupérer l'image NSFW de waifu
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // Vérification de la réponse de l'API
+        if (data && data.url) {
+            const imageUrl = data.url; // Récupérer l'URL de l'image NSFW de waifu
+
+            // Envoyer l'image avec le caption
+            await conn.sendMessage(from, {
+                image: { url: imageUrl },
+                caption: 'Here is your NSFW waifu image\n> 🍒KERM_MD-V4🍒'
+            }, { quoted: mek });
+        } else {
+            reply('❌ Unable to fetch NSFW waifu image. Please try again later.');
+        }
+    } catch (e) {
+        console.error(e);
+        reply('❌ An error occurred while processing your request.');
     }
 });
